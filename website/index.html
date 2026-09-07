@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя Игра — Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ========================================== -->
+        <!-- БЛОК ВХОДА (показывается, если нет токена) -->
+        <!-- ========================================== -->
+        <div id="authBlock">
+            <h1>🎮 Вход в систему</h1>
+
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Игровой ник" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+
+            <p>Нет аккаунта? <a href="#" id="showRegisterLink">Зарегистрироваться</a></p>
+
+            <form id="registerForm" style="display: none;">
+                <input type="text" id="regUsername" placeholder="Придумайте ник" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPassword" placeholder="Пароль" required>
+                <button type="submit">Создать аккаунт</button>
+            </form>
+
+            <div id="messageBox"></div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- БЛОК ДОСТИЖЕНИЙ (показывается ПОСЛЕ входа) -->
+        <!-- ========================================== -->
+        <div id="achievementsBlock" style="display: none;">
+            <h1>🏆 Мои достижения</h1>
+            <p id="playerName" style="color: #aaa;"></p>
+            <button id="logoutBtn" style="background: #555; margin-top: 10px;">Выйти</button>
+            <hr>
+            <div id="achievementsList">
+                <!-- Сюда будем вставлять достижения через JS -->
+                <p style="color: #888;">Загрузка достижений...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Скрипты -->
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

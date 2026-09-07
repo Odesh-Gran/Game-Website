@@ -1,0 +1,102 @@
+/* website/css/style.css */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #16213e;
+    padding: 30px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+h1 {
+    text-align: center;
+    color: #e94560;
+    font-size: 22px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 8px;
+    background: #0f3460;
+    color: white;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #e94560;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+button:hover {
+    background: #c73652;
+}
+
+a {
+    color: #e94560;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#messageBox {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.error { background: #4a1a2e; color: #ff6b6b; border: 1px solid #ff6b6b; }
+.success { background: #1a3a2e; color: #6bff9e; border: 1px solid #6bff9e; }
+
+/* Достижения */
+.achievement-item {
+    background: #0f3460;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border-left: 4px solid #e94560;
+    transition: 0.2s;
+}
+
+.achievement-item:hover {
+    background: #1a4a7a;
+}
+
+#achievementsList {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#logoutBtn {
+    background: #555;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#logoutBtn:hover {
+    background: #777;
+}
