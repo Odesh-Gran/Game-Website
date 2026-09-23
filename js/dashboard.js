@@ -2,18 +2,7 @@
 import { API_BASE_URL } from './config.js';
 import { showMessage } from './utils.js';
 
-const authModal = document.getElementById('authModal');
-const dashboard = document.getElementById('dashboard');
-const achievementsList = document.getElementById('achievementsList');
-
-// При загрузке — проверить токен
-document.addEventListener('DOMContentLoaded', function() {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-        dashboard.style.display = 'block';
-        showAchievements();
-    }
-});
+// НЕ получаем элементы глобально — только внутри функций
 
 async function loadAchievements(token) {
     const response = await fetch(`${API_BASE_URL}/achievements`, {
@@ -25,8 +14,13 @@ async function loadAchievements(token) {
 
 export async function showAchievements() {
     const token = localStorage.getItem('access_token');
-    if (!token) {
-        dashboard.style.display = 'none';
+    if (!token) return;
+
+    const dashboard = document.getElementById('dashboard');
+    const achievementsList = document.getElementById('achievementsList');
+
+    if (!dashboard || !achievementsList) {
+        console.error('Не найден #dashboard или #achievementsList');
         return;
     }
 
@@ -64,9 +58,21 @@ export async function showAchievements() {
     }
 }
 
-document.getElementById('logoutBtn').addEventListener('click', function() {
-    localStorage.removeItem('access_token');
-    dashboard.style.display = 'none';
-    document.getElementById('messageBox').textContent = '';
-    document.getElementById('messageBox').className = '';
+// При загрузке — проверить токен
+document.addEventListener('DOMContentLoaded', function() {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+        showAchievements();
+    }
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('access_token');
+            const dashboard = document.getElementById('dashboard');
+            if (dashboard) dashboard.style.display = 'none';
+            const box = document.getElementById('messageBox');
+            if (box) { box.textContent = ''; box.className = ''; }
+        });
+    }
 });
