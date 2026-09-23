@@ -2,56 +2,162 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Моя Игра — Вход</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Убежище в замке — RPG</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-
-        <!-- ========================================== -->
-        <!-- БЛОК ВХОДА (показывается, если нет токена) -->
-        <!-- ========================================== -->
-        <div id="authBlock">
-            <h1>🎮 Вход в систему</h1>
-
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="Игровой ник" required>
-                <input type="password" id="password" placeholder="Пароль" required>
-                <button type="submit">Войти</button>
-            </form>
-
-            <p>Нет аккаунта? <a href="#" id="showRegisterLink">Зарегистрироваться</a></p>
-
-            <form id="registerForm" style="display: none;">
-                <input type="text" id="regUsername" placeholder="Придумайте ник" required>
-                <input type="email" id="regEmail" placeholder="Email" required>
-                <input type="password" id="regPassword" placeholder="Пароль" required>
-                <button type="submit">Создать аккаунт</button>
-            </form>
-
-            <div id="messageBox"></div>
+    <!-- ====== НАВИГАЦИЯ ====== -->
+    <nav class="navbar">
+        <div class="nav-logo">🏰 Убежище в замке</div>
+        <div class="nav-links">
+            <a href="#about">Об игре</a>
+            <a href="#author">Об авторе</a>
+            <a href="#download">Скачать</a>
+            <button id="navLoginBtn" class="btn-nav">Войти</button>
         </div>
+    </nav>
 
-        <!-- ========================================== -->
-        <!-- БЛОК ДОСТИЖЕНИЙ (показывается ПОСЛЕ входа) -->
-        <!-- ========================================== -->
-        <div id="achievementsBlock" style="display: none;">
-            <h1>🏆 Мои достижения</h1>
-            <p id="playerName" style="color: #aaa;"></p>
-            <button id="logoutBtn" style="background: #555; margin-top: 10px;">Выйти</button>
-            <hr>
-            <div id="achievementsList">
-                <!-- Сюда будем вставлять достижения через JS -->
-                <p style="color: #888;">Загрузка достижений...</p>
+    <!-- ====== ГЛАВНЫЙ ЭКРАН (HERO) ====== -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Убежище в замке</h1>
+            <p class="hero-subtitle">2D-RPG с открытым миром: 12 локаций, боевая система, крафт, торговля и квесты</p>
+            
+            <div class="hero-buttons">
+                <a href="https://api.castle-survival.ru/download/game"
+                   download
+                   class="btn btn-primary">
+                   🎮 Скачать игру
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                   Узнать больше
+                </a>
+            </div>
+
+            <p class="hero-meta">Windows 10/11 · ZIP · ~157 МБ</p>
+        </div>
+    </header>
+
+    <!-- ====== ОБ ИГРЕ ====== -->
+    <section id="about" class="section">
+        <h2 class="section-title">Об игре</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">🗺️</div>
+                <h3>12 локаций</h3>
+                <p>Замок, сад, пруд, библиотека, темница, лес, склеп и другие</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">⚔️</div>
+                <h3>Боевая система</h3>
+                <p>Кровотечение, оглушение, вампиризм, ярость, контратака</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🛠️</div>
+                <h3>Крафт и торговля</h3>
+                <p>Оружие, броня, еда. NPC-торговцы с советами</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🎯</div>
+                <h3>Квесты и навыки</h3>
+                <p>Сюжетные и ежедневные. Профессиональные и боевые ветки</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🏆</div>
+                <h3>Достижения</h3>
+                <p>Синхронизация с сайтом через API</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">💾</div>
+                <h3>5 слотов</h3>
+                <p>Сохранение прогресса в JSON</p>
             </div>
         </div>
+    </section>
 
+    <!-- ====== ОБ АВТОРЕ ====== -->
+    <section id="author" class="section section-dark">
+        <h2 class="section-title">Об авторе</h2>
+        <div class="author-card">
+            <div class="author-avatar">👤</div>
+            <h3>Олег</h3>
+            <p class="author-role">Студент 2 курса ИТ (ИБ)</p>
+            <p class="author-bio">
+                Разрабатываю игру, backend и сайт в одиночку.
+                Стек: Python, FastAPI, PostgreSQL, Docker, Pygame.
+            </p>
+            <div class="author-links">
+                <a href="https://github.com/Odesh-Gran" target="_blank">GitHub</a>
+                <a href="https://api.castle-survival.ru/docs" target="_blank">API Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== СКАЧАТЬ ====== -->
+    <section id="download" class="section section-cta">
+        <h2 class="section-title">Готов играть?</h2>
+        <p class="cta-text">Скачай игру, распакуй архив и запусти <code>Castl_Survival.exe</code></p>
+        <a href="https://api.castle-survival.ru/download/game"
+           download
+           class="btn btn-primary btn-large">
+           🎮 Скачать игру (157 МБ)
+        </a>
+        <p class="cta-meta">
+            Требования: Windows 10/11, 4 ГБ ОЗУ, 500 МБ на диске
+        </p>
+    </section>
+
+    <!-- ====== ФУТЕР ====== -->
+    <footer class="footer">
+        <p>© 2026 Убежище в замке · Сделано с ❤️ Олегом</p>
+    </footer>
+
+    <!-- ====== ФОРМА ВХОДА (скрытая) ====== -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+
+            <!-- Логин -->
+            <form id="loginForm" class="auth-form">
+                <h2>Вход</h2>
+                <input type="text" id="username" placeholder="Имя пользователя" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <p class="auth-switch">
+                    Нет аккаунта? <a href="#" id="showRegisterLink">Зарегистрироваться</a>
+                </p>
+            </form>
+
+            <!-- Регистрация -->
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <h2>Регистрация</h2>
+                <input type="text" id="regUsername" placeholder="Имя пользователя" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPassword" placeholder="Пароль" required>
+                <button type="submit" class="btn btn-primary">Создать аккаунт</button>
+                <p class="auth-switch">
+                    Уже есть аккаунт? <a href="#" id="showLoginLink">Войти</a>
+                </p>
+            </form>
+
+            <div id="messageBox" class="message-box"></div>
+        </div>
     </div>
 
-    <!-- Скрипты -->
-    <script type="module" src="js/config.js"></script>
-    <script type="module" src="js/utils.js"></script>
+    <!-- ====== ПАНЕЛЬ ДОСТИЖЕНИЙ (скрытая) ====== -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <div class="dashboard-header">
+            <h2>Достижения игрока <span id="playerName"></span></h2>
+            <button id="logoutBtn" class="btn btn-secondary">Выйти</button>
+        </div>
+        <div id="achievementsList" class="achievements-list"></div>
+    </div>
+
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/dashboard.js"></script>
 </body>

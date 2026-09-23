@@ -5,16 +5,41 @@ import { showAchievements } from './dashboard.js';
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
-    const showLink = document.getElementById('showRegisterLink');
+    const showRegisterLink = document.getElementById('showRegisterLink');
+    const showLoginLink = document.getElementById('showLoginLink');
+    const navLoginBtn = document.getElementById('navLoginBtn');
+    const authModal = document.getElementById('authModal');
+    const modalClose = document.getElementById('modalClose');
 
-    // Переключение между формами
-    showLink.addEventListener('click', function(e) {
+    // Открыть модалку по кнопке "Войти" в навбаре
+    navLoginBtn.addEventListener('click', function() {
+        authModal.classList.add('active');
+    });
+
+    // Закрыть модалку
+    modalClose.addEventListener('click', function() {
+        authModal.classList.remove('active');
+    });
+
+    // Закрыть по клику вне модалки
+    authModal.addEventListener('click', function(e) {
+        if (e.target === authModal) {
+            authModal.classList.remove('active');
+        }
+    });
+
+    // Переключение: показать регистрацию
+    showRegisterLink.addEventListener('click', function(e) {
         e.preventDefault();
-        const isHidden = registerForm.style.display === 'none';
-        registerForm.style.display = isHidden ? 'block' : 'none';
-        loginForm.style.display = isHidden ? 'none' : 'block';
-        showLink.textContent = isHidden ? 'Уже есть аккаунт? Войти' : 'Нет аккаунта? Зарегистрироваться';
-        document.getElementById('messageBox').textContent = '';
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+    });
+
+    // Переключение: показать вход
+    showLoginLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        registerForm.style.display = 'none';
+        loginForm.style.display = 'block';
     });
 
     // Логин
@@ -29,8 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.access_token) {
                 localStorage.setItem('access_token', data.access_token);
                 showMessage('✅ Добро пожаловать!', 'success');
-                // Вместо просто сообщения — показываем достижения!
-                await showAchievements();
+                setTimeout(() => {
+                    authModal.classList.remove('active');
+                    document.getElementById('dashboard').style.display = 'block';
+                    showAchievements();
+                }, 600);
             }
         } catch (err) {
             showMessage('❌ ' + err.message, 'error');
@@ -50,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
             showMessage('✅ Аккаунт создан! Войдите.', 'success');
             registerForm.style.display = 'none';
             loginForm.style.display = 'block';
-            showLink.textContent = 'Нет аккаунта? Зарегистрироваться';
             registerForm.reset();
         } catch (err) {
             showMessage('❌ ' + err.message, 'error');
